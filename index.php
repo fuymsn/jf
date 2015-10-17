@@ -1,5 +1,5 @@
 <?php
-    include("./state.php");
+    require("./state.php");
     var_dump($_SESSION);
 ?>
 
