@@ -29,7 +29,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">注册</button>
 				<br/>
-				<a href="/jf/login.html">-->登录</a>
+				<a href="/jf/login.php">-->登录</a>
 			</form>
 		</div>
 	</div>

@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	
+	if($_SESSION){
+		header("Location: /jf/index.php");
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +34,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">登录</button>
 				<br/>
-				<a href="/jf/reg.html">-->注册</a>
+				<a href="/jf/reg.php">-->注册</a>
 			</form>
 		</div>
 	</div>
