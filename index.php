@@ -1,3 +1,8 @@
+<?php
+    include("./state.php");
+    var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html>
 <head lang="en">
