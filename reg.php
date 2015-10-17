@@ -17,7 +17,7 @@ if ($pw1 != $pw2) {
 }
 
 //1 首先链接数据
-$con = mysql_connect("10.1.10.145:3366", "halin", "123456");
+$con = mysql_connect("127.0.0.1:3306", "root", "");
 
 if (!$con) {
 	die("链接不成功");
