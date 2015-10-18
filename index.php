@@ -32,7 +32,8 @@
             <a class="navbar-brand" href="#">金分</a>
           </div>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./loginout.php">退出登录</a></li>
+            <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
+            <li><a href="./loginout.php">退出</a></li>
           </ul>
         </div>
       </nav>
