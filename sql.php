@@ -1,29 +1,105 @@
 <?php
 
-//链接数据库
-function mysqlConnect()
-{
-	//1 首先链接数据
-	$con = mysql_connect("127.0.0.1:3306", "root", "");
+class MySql{
 	
-	if (!$con) {
-		die("链接不成功");
+	//链接状态
+	private $_connection;
+	//查询得到的sql，用于链式存储
+	private $_sql;
+	
+	function __construct(){
+		$this->connect();
 	}
 	
-	// 2 选择要操作的数据
-	mysql_select_db("younglogin", $con);
+	//链接数据库
+	function connect()
+	{
+		//1 首先链接数据
+		$con = mysql_connect("127.0.0.1:3306", "root", "");
+		
+		if (!$con) {
+			die("链接不成功");
+		}
+		
+		// 2 选择要操作的数据
+		mysql_select_db("younglogin", $con);
+		
+		$this->_connection = $con;
+	}
 	
-	// 3 执行要做得sql 
-	// $res = mysql_query($sqlinsert);
+	/**
+	* 查询
+	* $target 查询对象，用逗号符分割
+	* $table 查询的表
+	*/
+	function select($target, $table)
+	{
+		$this->_sql = "select ". $target ." from ". $table;
+		return $this;
+	}
 
-	// if (!$res) {
-	// 	echo "can not insert";
-	// }else{
-	// 	echo "注册成功";
-	// }
-	// 4 close connection
-	// mysql_close($con);
-	return $con;
+	/**
+	* 查询
+	* @param string $key 查询key
+	* @param string $value 查询value
+	* @param string $operator 操作符
+	* @return object
+	*/
+	function where($key, $value, $operator="="){
+		if(!strpos($this->_sql, "where")){
+			$this->_sql = $this->_sql." where ".$key.$operator."'".$value."'";
+		}else{
+			$this->_sql = $this->_sql." and ".$key.$operator."'".$value."'";
+		}
+
+		return $this;
+	}
+	
+	function limit($num){
+		$this->_sql = $this->_sql." limit ".$num;
+		
+		return $this;
+	}
+	
+	function query(){
+		// 3 执行要做得sql 
+		$exe = mysql_query($this->_sql);
+		
+		// 4 获取返回的结果
+		$result = mysql_fetch_assoc($exe);
+		
+		return $result;
+	}
+	
+	/*
+	* 插入
+	*/
+	function insert($table, $arr)
+	{	
+		$strKeys = "";
+		$strValues = "";
+		
+		foreach($arr as $key=>$value){
+			$strKeys .= ",".$key;
+			$strValues .= ","."'".$value."'";
+		}
+		
+		//过滤左边逗号
+		$strKeys = ltrim($strKeys, ',');
+		$strValues = ltrim($strValues, ',');
+	
+		$sql = "insert into ".$table." (".$strKeys.") values(".$strValues.")";
+		
+		$result = mysql_query($sql);
+		
+		return $result;
+	}
+	
+	function __destruct(){
+		// 5 关闭数据库
+		mysql_close($this->_connection);
+	}
 }
+
 
 ?>
