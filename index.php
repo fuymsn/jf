@@ -25,104 +25,110 @@
     </style>
 </head>
 <body>
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">金分</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="./loginout.php">退出登录</a></li>
-      </ul>
-    </div>
-  </nav>
-  <section>
-    <div class="col-md-3">
-      <ul class="list-group">
-         <li class="list-group-item">1</li>
-         <li class="list-group-item">2</li>
-         <li class="list-group-item">3</li>
-         <li class="list-group-item">4</li>
-         <li class="list-group-item">5</li>
-      </ul>
-    </div>
-    <div class="col-md-9">
-      <div class="panel panel-default">
-         <div class="panel-body">
-          <div class="container-fluid">
-          <form class="form-inline">
-              <div class="kbn-timepicker-section">
-                <label>From:</label>
-                </br>
-                <div class="form-group">
-                  <div class="input-group date form_date" data-date="" data-link-field="startDate" data-link-format="yyyy-mm-dd" id="startTime">
-                    <input class="form-control" size="16" type="text" value="">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                  </div>
-                  <input type="hidden" id="startDate" value="" /><br/>
-                </div>
-              </div>
-
-              <div class="kbn-timepicker-section">
-                  <label>
-                    To: 
-                  </label>
-                  </br>
-                  <div class="input-group date form_date" data-date="" data-link-field="endDate" data-link-format="yyyy-mm-dd" id="endTime">
-                    <input class="form-control" size="16" type="text" value="">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                  </div>
-                  <button type="button" class="btn btn-primary kbn-timepicker-go" id="chartFresh">Go</button>
-                  <input type="hidden" id="endDate" value="" /><br/>
-              </div>
-          </form>
+  <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">金分</a>
           </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./loginout.php">退出登录</a></li>
+          </ul>
+        </div>
+      </nav>
+    <div class="row">
 
-<!--             <div on="mode" class="container-fluid">
-              <div class="ng-scope">
-                <form role="form" class="form-inline ng-pristine ng-valid" name="relativeTime">
+
+        <div class="col-md-3">
+          <ul class="list-group">
+            <li class="list-group-item">1</li>
+            <li class="list-group-item">2</li>
+            <li class="list-group-item">3</li>
+            <li class="list-group-item">4</li>
+            <li class="list-group-item">5</li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="container-fluid">
+              <form class="form-inline">
                   <div class="kbn-timepicker-section">
-                    <label>From:<span>The time you set</span></label>
-                    <br>
+                    <label>From:</label>
+                    </br>
                     <div class="form-group">
-                      <input required="" greater-than="-1" type="number" class="form-control ng-pristine ng-valid ng-untouched ng-valid-greater-than ng-valid-number ng-valid-required">
-                    </div>
-                    <div class="form-group">
-                      <select class="form-control col-xs-2 ng-pristine ng-valid ng-untouched">
-                        <option value="0" label="Seconds ago">Seconds ago</option>
-                        <option value="1" label="Minutes ago">Minutes ago</option>
-                        <option value="2" label="Hours ago">Hours ago</option>
-                        <option value="3" label="Days ago">Days ago</option>
-                        <option value="4" selected="selected" label="Weeks ago">Weeks ago</option>
-                        <option value="5" label="Months ago">Months ago</option>
-                        <option value="6" label="Years ago">Years ago</option>
-                      </select>
+                      <div class="input-group date form_date" data-date="" data-link-field="startDate" data-link-format="yyyy-mm-dd" id="startTime">
+                        <input class="form-control" size="16" type="text" value="">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                      <input type="hidden" id="startDate" value="" /><br/>
                     </div>
                   </div>
-
+    
                   <div class="kbn-timepicker-section">
-                    <label>
-                      To: Now
-                    </label>
-                    <br>
-                    <div class="form-group">
-                      <input type="text" disabled="" class="form-control" value="Now">
-                      <button type="submit" class="btn btn-primary kbn-timepicker-go" ng-disabled="!relative.preview">Go</button>
-                    </div>
+                      <label>
+                        To: 
+                      </label>
+                      </br>
+                      <div class="input-group date form_date" data-date="" data-link-field="endDate" data-link-format="yyyy-mm-dd" id="endTime">
+                        <input class="form-control" size="16" type="text" value="">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                      </div>
+                      <button type="button" class="btn btn-primary kbn-timepicker-go" id="chartFresh">Go</button>
+                      <input type="hidden" id="endDate" value="" /><br/>
                   </div>
-
-                </form>
+              </form>
               </div>
-            </div> -->
-
-            <div class="form-group main-message">
-                <iframe src="" height="600" width="100%" border="0" id="chart" name="chart"></iframe>
+    
+    <!--             <div on="mode" class="container-fluid">
+                  <div class="ng-scope">
+                    <form role="form" class="form-inline ng-pristine ng-valid" name="relativeTime">
+                      <div class="kbn-timepicker-section">
+                        <label>From:<span>The time you set</span></label>
+                        <br>
+                        <div class="form-group">
+                          <input required="" greater-than="-1" type="number" class="form-control ng-pristine ng-valid ng-untouched ng-valid-greater-than ng-valid-number ng-valid-required">
+                        </div>
+                        <div class="form-group">
+                          <select class="form-control col-xs-2 ng-pristine ng-valid ng-untouched">
+                            <option value="0" label="Seconds ago">Seconds ago</option>
+                            <option value="1" label="Minutes ago">Minutes ago</option>
+                            <option value="2" label="Hours ago">Hours ago</option>
+                            <option value="3" label="Days ago">Days ago</option>
+                            <option value="4" selected="selected" label="Weeks ago">Weeks ago</option>
+                            <option value="5" label="Months ago">Months ago</option>
+                            <option value="6" label="Years ago">Years ago</option>
+                          </select>
+                        </div>
+                      </div>
+    
+                      <div class="kbn-timepicker-section">
+                        <label>
+                          To: Now
+                        </label>
+                        <br>
+                        <div class="form-group">
+                          <input type="text" disabled="" class="form-control" value="Now">
+                          <button type="submit" class="btn btn-primary kbn-timepicker-go" ng-disabled="!relative.preview">Go</button>
+                        </div>
+                      </div>
+    
+                    </form>
+                  </div>
+                </div> -->
+    
+                <div class="form-group main-message">
+                    <iframe src="" height="600" width="100%" border="0" id="chart" name="chart"></iframe>
+                </div>
             </div>
-         </div>
-      </div>
+          </div>
+        </div>
+
     </div>
-  </section>
+  </div>
+
 </body>
 </html>
 <script type="text/javascript">

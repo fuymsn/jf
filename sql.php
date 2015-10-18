@@ -23,6 +23,7 @@ function mysqlConnect()
 	// }
 	// 4 close connection
 	// mysql_close($con);
+	return $con;
 }
 
 ?>

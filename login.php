@@ -34,7 +34,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">登录</button>
 				<br/>
-				<a href="/jf/reg.php">-->注册</a>
+				<a href="./reg.php">-->注册</a>
 			</form>
 		</div>
 	</div>
