@@ -43,7 +43,20 @@
         <div class="col-md-9">
           <div class="panel panel-default">
             <div class="panel-body">
-				container
+			<table>
+				
+			</table>
+			<form>
+				<div class="form-group">
+					<label for="category">类别</label>
+					<input type="text" class="form-control" id="category" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="iframesrc">iframe 链接</label>
+					<textarea class="form-control" id="iframesrc" placeholder="iframe src"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">提交</button>
+			</form>
             </div>
           </div>
         </div>
