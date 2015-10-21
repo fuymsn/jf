@@ -5,6 +5,7 @@ function e($a){
 	var_dump($a);
 	echo '</pre>';
 }
+
 $c =  $_GET['c']; //controller name  
 $a =  $_GET['a']; //action name
  $controller = $c . 'Controller';
