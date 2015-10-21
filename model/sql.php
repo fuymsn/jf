@@ -113,7 +113,6 @@ class MySql{
 		$strValues = ltrim($strValues, ',');
 	
 		$this->_sql = "insert into ".$table." (".$strKeys.") values(".$strValues.")";
-
 		//$result = mysql_query($sql);
 		
 		return $this;
