@@ -1,6 +1,17 @@
 <?php
+
     require("./state.php");
+    require("./model/sql.php");
+
     var_dump($_SESSION);
+
+    $sql = new MySql();
+
+    $categoryResult = $sql->select("id, category, iframesrc", "category")->query();
+
+    //isset 判断是否存在
+    $cid = !isset($_GET["cid"]) ? $categoryResult[0]['id'] : $_GET["cid"];
+
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +50,16 @@
       </nav>
     <div class="row">
 
-
         <div class="col-md-3">
-          <ul class="list-group">
-            <li class="list-group-item">1</li>
-            <li class="list-group-item">2</li>
-            <li class="list-group-item">3</li>
-            <li class="list-group-item">4</li>
-            <li class="list-group-item">5</li>
-          </ul>
+          <div class="list-group">
+            <?php foreach ($categoryResult as $value) { ?>
+              <a href="./index.php?cid=<?php echo $value['id'];?>" class="list-group-item <?php if($cid==$value['id']){echo "active";} ?>">
+                <?php echo $value['category']; ?>
+              </a>
+            <?php }?>
+          </div>
         </div>
+
         <div class="col-md-9">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -133,14 +144,25 @@
 </body>
 </html>
 <script type="text/javascript">
+    //var url = "http://elkdb.ops.org/#/visualize/edit/%E6%96%B0%E7%94%A8%E6%88%B7%E4%B8%83%E6%97%A5%E7%95%99%E5%AD%98%E7%8E%87%E7%BB%9F%E8%AE%A1?_g=(refreshInterval:(display:Off,pause:!f,section:0,value:0),time:(from:'2015-10-01T02:53:30.324Z',mode:absolute,to:'2015-10-14T05:23:38.855Z'))&_a=(filters:!(),linked:!t,query:(query_string:(query:'*')),vis:(aggs:!((id:'1',params:(field:%E6%96%B0%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E7%8E%87),schema:metric,type:sum),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:'@timestamp',interval:d,min_doc_count:1),schema:segment,type:date_histogram)),listeners:(),params:(addLegend:!f,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!t,shareYAxis:!t,times:!(),yAxis:(max:1,min:0)),type:histogram))";
     
-    var url = "";
+    <?php foreach ($categoryResult as $value) { ?>
+      <?php if($value['id'] == $_GET['cid']){ ?>
+    var url = "<?php echo $value['iframesrc'] ?>";
+      <?php } ?>
+    <?php } ?>
+
     var dateStart = "";
     var dateEnd = "";
 
-    var url1 = "http://elkdb.ops.org/#/visualize/edit/%E6%AF%8F%E6%97%A5%E6%95%B4%E7%AB%99%E6%94%B6%E5%85%A5%E7%BB%9F%E8%AE%A1?embed&_g=(refreshInterval:(display:Off,pause:!f,section:0,value:0),time:(from:'";
-    var url2 = "',mode:quick,to:'";
-    var url3 = "'))&_a=(filters:!(),linked:!t,query:(query_string:(query:'*')),vis:(aggs:!((id:'1',params:(field:%E6%94%B6%E5%85%A5%EF%BC%88%E5%85%83%EF%BC%89),schema:metric,type:sum),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:'@timestamp',interval:d,min_doc_count:1),schema:segment,type:date_histogram)),listeners:(),params:(addLegend:!f,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!f,shareYAxis:!t,times:!(),yAxis:()),type:histogram))";
+    var urlArr = url.split("______");
+    var url1 = urlArr[0];
+    var url2 = urlArr[1];
+    var url3 = urlArr[2];
+    
+    //var url1 = "http://elkdb.ops.org/#/visualize/edit/%E6%AF%8F%E6%97%A5%E6%95%B4%E7%AB%99%E6%94%B6%E5%85%A5%E7%BB%9F%E8%AE%A1?embed&_g=(refreshInterval:(display:Off,pause:!f,section:0,value:0),time:(from:'";
+    //var url2 = "',mode:quick,to:'";
+    //var url3 = "'))&_a=(filters:!(),linked:!t,query:(query_string:(query:'*')),vis:(aggs:!((id:'1',params:(field:%E6%94%B6%E5%85%A5%EF%BC%88%E5%85%83%EF%BC%89),schema:metric,type:sum),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:'@timestamp',interval:d,min_doc_count:1),schema:segment,type:date_histogram)),listeners:(),params:(addLegend:!f,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!f,shareYAxis:!t,times:!(),yAxis:()),type:histogram))";
     
     //日期选择
   	$('.form_date').datetimepicker({
@@ -181,6 +203,7 @@
       };
 
       $("#chart").attr("src", url);
+
     });
 
 </script>

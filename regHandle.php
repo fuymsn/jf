@@ -1,6 +1,6 @@
 <?php
 
-require("./sql.php");
+require("./model/sql.php");
 session_start();
 
 $mail = $_POST["email"];

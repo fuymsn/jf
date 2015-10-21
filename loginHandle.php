@@ -1,6 +1,6 @@
 <?php
 
-require("./sql.php");
+require("./model/sql.php");
 session_start();
 
 //获取前台传入的email and pwd
@@ -25,6 +25,7 @@ $sqlResult = $sql->select("uid,email", "user")
 	->where("pwd", $pwd)
 	->limit(1)
 	->query();
+	
 //var_dump($sqlResult); exit;
 //$sqlRead = "select uid,email from user where email='".$email."' and pwd='".$pwd."' limit 1";
 //$resRead = mysql_query($sqlRead);

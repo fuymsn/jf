@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2015 at 04:49 AM
+-- Generation Time: Oct 21, 2015 at 12:40 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -27,10 +27,17 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
-  `uid` int(11) NOT NULL,
-  `category` varchar(32) NOT NULL,
-  `iframesrc` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='添加金分类别';
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `iframesrc` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='添加金分类别';
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `category`, `iframesrc`) VALUES
+(11, '新用户次日留存率统计', '<iframe src="http://elkdb.ops.org/#/visualize/edit/%E6%96%B0%E7%94%A8%E6%88%B7%E6%AC%A1%E6%97%A5%E7%95%99%E5%AD%98%E7%8E%87%E7%BB%9F%E8%AE%A1?embed&_g=(refreshInterval:(display:Off,pause:!f,section:0,value:0),time:(from:''______'',mode:absolute,to:''______''))&_a=(filters:!(),linked:!t,query:(query_string:(query:''*'')),vis:(aggs:!((id:''1'',params:(field:%E6%96%B0%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E7%8E%87),schema:metric,type:sum),(id:''2'',params:(customInterval:''2h'',extended_bounds:(),field:''@timestamp'',interval:d,min_doc_count:1),schema:segment,type:date_histogram)),listeners:(),params:(addLegend:!f,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!t,shareYAxis:!t,times:!(),yAxis:(max:1,min:0)),type:histogram))" height="600" width="800"></iframe>');
 
 -- --------------------------------------------------------
 
@@ -78,7 +85,7 @@ INSERT INTO `user` (`uid`, `email`, `pwd`) VALUES
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`uid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -94,7 +101,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `user`
 --
