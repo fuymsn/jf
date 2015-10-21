@@ -140,7 +140,9 @@
 
     </div>
   </div>
-
+  <div style="width:0px; height:0px; overflow:hidden;" id="con">
+    <?php echo $value['iframesrc'] ?>
+  </div>
 </body>
 </html>
 <script type="text/javascript">
@@ -148,7 +150,7 @@
     
     <?php foreach ($categoryResult as $value) { ?>
       <?php if($value['id'] == $_GET['cid']){ ?>
-    var url = "<?php echo $value['iframesrc'] ?>";
+    var url = $("#con").find("iframe").attr("src");
       <?php } ?>
     <?php } ?>
 

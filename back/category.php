@@ -23,7 +23,7 @@
         /* width: 500px; */
         word-break: break-all;
         white-space: nowrap;
-        width: 70%;
+        width: 60%;
       }
     </style>
 </head>
@@ -56,7 +56,8 @@
       				<tr>
                 <td><?php echo ++$index ?></td>
                 <td><?php echo $value['category']?></td>
-                <td class="table-ifrsrc" title="<?php echo $value['iframesrc']?>"><div style="width: 500px"><?php echo $value['iframesrc']?></div></td>
+                <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
+                <td><button type="submit" class="btn btn-primary btn-xs">删除</button></td>
               </tr>
               <?php }?>
       			</table>
