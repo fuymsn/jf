@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>page</title>
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-datetimepicker.min.css">
-    <script src="lib/jquery-2.0.1.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="lib/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <script src="../lib/jquery-2.0.1.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <style>
       .main-message{ padding: 30px 15px 5px 15px;}
       .control-label{ line-height: 34px;}
@@ -28,7 +28,7 @@
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
-            <li><a href="./loginout.php">退出</a></li>
+            <li><a href="/login/out">退出</a></li>
           </ul>
         </div>
       </nav>
@@ -37,7 +37,7 @@
         <div class="col-md-3">
           <div class="list-group">
             <?php foreach ($categoryResult as $value) { ?>
-              <a href="./index.php?cid=<?php echo $value['id'];?>" class="list-group-item <?php if($cid==$value['id']){echo "active";} ?>">
+              <a href="/home?cid=<?php echo $value['id'];?>" class="list-group-item <?php if($cid==$value['id']){echo "active";} ?>">
                 <?php echo $value['category']; ?>
               </a>
             <?php }?>
@@ -133,7 +133,7 @@
     //var url = "http://elkdb.ops.org/#/visualize/edit/%E6%96%B0%E7%94%A8%E6%88%B7%E4%B8%83%E6%97%A5%E7%95%99%E5%AD%98%E7%8E%87%E7%BB%9F%E8%AE%A1?_g=(refreshInterval:(display:Off,pause:!f,section:0,value:0),time:(from:'2015-10-01T02:53:30.324Z',mode:absolute,to:'2015-10-14T05:23:38.855Z'))&_a=(filters:!(),linked:!t,query:(query_string:(query:'*')),vis:(aggs:!((id:'1',params:(field:%E6%96%B0%E7%94%A8%E6%88%B7%E7%95%99%E5%AD%98%E7%8E%87),schema:metric,type:sum),(id:'2',params:(customInterval:'2h',extended_bounds:(),field:'@timestamp',interval:d,min_doc_count:1),schema:segment,type:date_histogram)),listeners:(),params:(addLegend:!f,addTimeMarker:!f,addTooltip:!t,defaultYExtents:!f,mode:stacked,scale:linear,setYExtents:!t,shareYAxis:!t,times:!(),yAxis:(max:1,min:0)),type:histogram))";
     
     <?php foreach ($categoryResult as $value) { ?>
-      <?php if($value['id'] == $_GET['cid']){ ?>
+      <?php if($value['id'] == $cid){ ?>
     var url = $("#con").find("iframe").attr("src");
       <?php } ?>
     <?php } ?>

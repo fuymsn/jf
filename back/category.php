@@ -1,5 +1,5 @@
 <?php
-    require("../state.php");
+    require("../core/state.php");
     require("../model/sql.php");
 
     $sql = new MySql();

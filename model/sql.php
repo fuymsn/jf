@@ -123,7 +123,7 @@ class MySql{
 	 */
 	function delete($table)
 	{
-
+		
 	}
 	
 	function __destruct(){

@@ -1,11 +1,3 @@
-<?php
-	session_start();
-	
-	if($_SESSION){
-		header("Location: /jf/index.php");
-	}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +14,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<form action="loginHandle.php" method="POST" id="loginForm">
+			<form action="/login/handle" method="POST" id="loginForm">
 				<h1>登录</h1>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email</label>
@@ -34,7 +26,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">登录</button>
 				<br/>
-				<a href="./reg.php">-->注册</a>
+				<a href="/register">-->注册</a>
 			</form>
 		</div>
 	</div>

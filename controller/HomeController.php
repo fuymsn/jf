@@ -8,8 +8,7 @@ class HomeController{
 
 	function index()
 	{
-		
-		require("./state.php");
+		require("./core/state.php");
     	require("./model/sql.php");
     	$sql = new MySql();
     	$categoryResult = $sql->select("id, category, iframesrc", "category")->query();

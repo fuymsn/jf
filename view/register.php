@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<form action="regHandle.php" method="POST" id="regForm">
+			<form action="/register/handle" method="POST" id="regForm">
 				<h1>注册</h1>
 				<div class="form-group">
 					<label for="email">Email</label>
@@ -29,7 +29,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary btn-block">注册</button>
 				<br/>
-				<a href="./login.php">-->登录</a>
+				<a href="/login">-->登录</a>
 			</form>
 		</div>
 	</div>
