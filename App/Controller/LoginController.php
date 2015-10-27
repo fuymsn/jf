@@ -7,11 +7,11 @@ class LoginController extends BaseController{
 		session_start();
 		
 		if($_SESSION){
-			header("Location: /home");
+			header("Location: /");
 		}
 
 		//require出现错误继续执行
-		include './view/login.php';
+		include __APP__.'View/Front/login.php';
 
 	}
 
@@ -19,7 +19,7 @@ class LoginController extends BaseController{
 	function handle()
 	{
 		//require出现错误则断掉
-		require("./model/sql.php");
+		require __CORE__."Model.php";
 		session_start();
 
 		//获取前台传入的email and pwd
@@ -63,7 +63,7 @@ class LoginController extends BaseController{
 			
 			echo "登录成功";
 			
-			header("Location: /home");
+			header("Location: /");
 		}else{
 			exit("登录失败");
 		}

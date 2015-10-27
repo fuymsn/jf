@@ -4,12 +4,12 @@ class RegisterController
 {
 	function index()
 	{
-		include "./view/register.php";
+		include __APP__."/View/Front/register.php";
 	}
 
 	function handle(){
 
-		require("./model/sql.php");
+		require __CORE__."Model.php";
 		session_start();
 
 		$mail = $_POST["email"];
@@ -50,7 +50,7 @@ class RegisterController
 				$_SESSION['email'] = $mail;
 				$_SESSION['uid'] = mysql_insert_id();
 
-				header('Location: /home');
+				header('Location: /');
 				//echo "注册成功";
 			}
 

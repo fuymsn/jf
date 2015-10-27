@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>home</title>
     <meta charset="UTF-8">
-    <title>page</title>
-    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap-datetimepicker.min.css">
-    <script src="../lib/jquery-2.0.1.min.js"></script>
-    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="../lib/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap-datetimepicker.min.css">
+    <script src="./lib/jquery-2.0.1.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
     <style>
       .main-message{ padding: 30px 15px 5px 15px;}
       .control-label{ line-height: 34px;}

@@ -3,7 +3,7 @@
 <head>
 	<title>login</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
 	<style>
 		#loginForm{
 			width: 300px;
