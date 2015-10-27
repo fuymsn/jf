@@ -18,13 +18,50 @@
         float: left;
         margin-right: 40px;
       }
+      
+      .nav >.active:focus>a,
+      .nav >.active:hover>a,
+      .nav >.active>a {
+          padding-left: 18px;
+          font-weight: 700;
+          color: #563d7c;
+          background-color: transparent;
+          border-left: 2px solid #563d7c;
+      }
+      
+      .sidenav>li>a {
+          display: block;
+          padding: 4px 20px;
+          font-size: 13px;
+          font-weight: 500;
+          color: #767676;
+      }
+      
+      .sidenav .nav>li>a {
+          padding-top: 1px;
+          padding-bottom: 1px;
+          padding-left: 30px;
+          font-size: 12px;
+          font-weight: 400;
+      }
+      
+      .sidenav .nav {
+          padding-bottom: 10px;
+      }
+      
+      .sidenav .nav>.active:focus>a,
+      .sidenav .nav>.active:hover>a,
+      .sidenav .nav>.active>a {
+          padding-left: 28px;
+          font-weight: 500;
+      }
     </style>
 </head>
 <body>
   <nav class="navbar navbar-static-top navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">金分</a>
+        <a class="navbar-brand" href="#">V项目数据统计</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
@@ -35,13 +72,36 @@
   <div class="">
     
         <div class="col-md-3">
-          <div class="list-group">
-            <?php foreach ($categoryResult as $value) { ?>
-              <a href="/home?cid=<?php echo $value['id'];?>" class="list-group-item <?php if($cid==$value['id']){echo "active";} ?>">
-                <?php echo $value['category']; ?>
-              </a>
-            <?php }?>
-          </div>
+          <ul class="nav sidenav">
+            <li>
+              <a href="#">用户数据统计</a>
+              <ul class="nav">
+                <?php foreach ($categoryResult as $value) { ?>
+                  <?php if($value['type'] == 0){?>
+                    <li class="<?php if($cid == $value['id']){echo "active";} ?>">
+                      <a href="/home?cid=<?php echo $value['id'];?>">
+                        <?php echo $value['category']; ?>
+                      </a>
+                    </li>
+                  <?php } ?>
+                <?php } ?>
+              </ul>
+            </li>
+            <li>
+              <a href="#">主播数据统计</a>
+              <ul class="nav">
+                <?php foreach ($categoryResult as $value) { ?>
+                  <?php if($value['type'] == 1){?>
+                  <li class="<?php if($cid == $value['id']){echo "active";} ?>">
+                    <a href="/home?cid=<?php echo $value['id'];?>">
+                      <?php echo $value['category']; ?>
+                    </a>
+                  </li>
+                  <?php } ?>
+                <?php }?>
+              </ul>
+            </li>
+          </ul>
         </div>
 
         <div class="col-md-9">
@@ -124,7 +184,12 @@
         
   </div>
   <div style="width:0px; height:0px; overflow:hidden;" id="con">
-    <?php echo $value['iframesrc'] ?>
+    <?php foreach ($categoryResult as $value) { ?>
+      <?php if($value['id'] == $cid){ ?>
+        <?php echo $value['iframesrc'] ?>
+      <?php } ?>
+    <?php } ?>
+    
   </div>
 </body>
 </html>

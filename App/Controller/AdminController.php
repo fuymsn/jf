@@ -16,7 +16,7 @@ class AdminController
 	
 		$sql = new MySql();
 	
-		$result = $sql->select("id, category, iframesrc", "category")->query();
+		$result = $sql->select("id, type, category, iframesrc", "category")->query();
 		
 		include __APP__.'View/Admin/category.php';
 	}
@@ -26,6 +26,7 @@ class AdminController
 		require __CORE__."Model.php";
 		session_start();
 		
+		$type = $_POST["type"];
 		$category = $_POST["category"];
 		$iframesrc = $_POST["iframesrc"];
 		
@@ -42,7 +43,7 @@ class AdminController
 		
 		$sql = new MySql();
 		
-		$insertResult = $sql->insert("category", array("category"=>$category, "iframesrc"=>$iframesrc))->query();
+		$insertResult = $sql->insert("category", array("type"=>$type, "category"=>$category, "iframesrc"=>$iframesrc))->query();
 		
 		if (!$insertResult) {
 			exit("添加失败");

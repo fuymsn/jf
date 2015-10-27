@@ -39,7 +39,17 @@ function router($handle, $pathArr){
 	//echo './controller/'.$controller.'.php';
 	$ins = new $controller;
 	
+	//before
+	// handel request like get / post
+	// *
+	
+	
 	$ins->$handle();
+	
+	//after
+	
+	//*
+	
 }
 
 //如果没有输入路由

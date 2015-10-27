@@ -22,7 +22,7 @@
     <nav class="navbar navbar-static-top navbar-default" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">金分</a>
+        <a class="navbar-brand" href="#">V项目数据统计</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
@@ -43,11 +43,19 @@
             <div class="panel-body">
 
       			<table class="table table-striped">
+      				<tr>
+                <th>No.</th>
+                <th>图表名称</th>
+                <th>类型</th>
+                <th>图表链接</th>
+                <th>操作</th>
+              </tr>
               <?php $index = 0 ?>
               <?php foreach ($result as $value) {?>
       				<tr>
                 <td><?php echo ++$index ?></td>
-                <td><?php echo $value['category']?></td>
+                <td><?php echo $value['category'] ?></td>
+                <td><?php echo $value['type'] ?></td>
                 <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
                 <td><a href="/admin/delete?cid=<?php echo $value['id']?>" class="btn btn-primary btn-xs">删除</a></td>
               </tr>
@@ -55,12 +63,22 @@
       			</table>
 
       			<form action="/admin/add" method="POST">
+              <div class="row">
+                <div class="form-group col-lg-6">
+                  <label for="category">图表名称</label>
+                  <input type="text" class="form-control" name="category" id="category" placeholder="category">
+                </div>
+                <div class="form-group col-lg-6">
+                  <label for="type">图表名称</label>
+                  <select name="type" class="form-control" id="type" >
+                    <option value="0">用户</option>
+                    <option value="1">主播</option>
+                  </select>
+                </div>
+              </div>
+
       				<div class="form-group">
-      					<label for="category">类别</label>
-      					<input type="text" class="form-control" name="category" id="category" placeholder="category">
-      				</div>
-      				<div class="form-group">
-      					<label for="iframesrc">iframe 链接</label>
+      					<label for="iframesrc">图表链接</label>
       					<textarea class="form-control" name="iframesrc" id="iframesrc" placeholder="iframe src"></textarea>
       				</div>
       				<button type="submit" class="btn btn-primary">提交</button>
