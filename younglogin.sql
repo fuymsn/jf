@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2015 at 01:58 PM
+-- Generation Time: Oct 27, 2015 at 06:00 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `type` int(11) NOT NULL COMMENT '图表类型，0用户，1主播',
   `category` varchar(255) NOT NULL,
   `iframesrc` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COMMENT='添加金分类别';
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='添加金分类别';
 
 --
 -- Dumping data for table `category`
@@ -69,6 +69,7 @@ INSERT INTO `category` (`id`, `type`, `category`, `iframesrc`) VALUES
 
 CREATE TABLE IF NOT EXISTS `user` (
   `uid` int(11) NOT NULL,
+  `groupid` int(11) NOT NULL COMMENT '群组id, 0为普通用户，1为管理员',
   `email` varchar(32) NOT NULL,
   `pwd` varchar(32) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
@@ -77,27 +78,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`uid`, `email`, `pwd`) VALUES
-(1, 'fuymsn@hotmail.com', '111111'),
-(7, 'test@test.com', '111111'),
-(8, 'young@qq.com', '111111'),
-(9, 'young@qq1.com', '111111'),
-(10, 'young1@qq.com', '111111'),
-(11, 'young2@qq.com', '111111'),
-(12, 'young3@qq.com', '111111'),
-(13, 'young4@qq.com', '111111'),
-(14, 'fuymsn1@hotmail.com', '111111'),
-(15, 'fuymsn2@hotmail.com', '111'),
-(16, 'fuymsn4@hotmail.com', '111111'),
-(17, 'fuymsn5@hotmail.com', '111111'),
-(18, 'test1@test.com', '111'),
-(19, 'fuymsn@hotmail.com77', '1111111111'),
-(20, 'fuymsn@hotssmail.com', '111111'),
-(21, 'fuymsn@hotmail.cosss', '111111'),
-(22, '111111@qqc.p', '111111'),
-(23, 'fuymsn9@hotmail.com', '111111'),
-(24, 'sss@qqq.com', '111111'),
-(25, 'admin@admin.com', '123456');
+INSERT INTO `user` (`uid`, `groupid`, `email`, `pwd`) VALUES
+(1, 0, 'fuymsn@hotmail.com', '111111'),
+(25, 1, 'admin@admin.com', 'qwerty');
 
 --
 -- Indexes for dumped tables
@@ -123,7 +106,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT for table `user`
 --

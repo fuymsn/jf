@@ -1,17 +1,10 @@
 <?php
 
-class AdminController
+class AdminController extends BaseController
 {
 
-	function __construct()
-	{
-		
-	}
-	
 	function index()
 	{
-		
-		require __CORE__."state.php";
 		require __CORE__."Model.php";
 	
 		$sql = new MySql();

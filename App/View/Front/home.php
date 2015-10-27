@@ -79,8 +79,8 @@
                 <?php foreach ($categoryResult as $value) { ?>
                   <?php if($value['type'] == 0){?>
                     <li class="<?php if($cid == $value['id']){echo "active";} ?>">
-                      <a href="/home?cid=<?php echo $value['id'];?>">
-                        <?php echo $value['category']; ?>
+                      <a href="/?cid=<?php echo $value['id'];?>">
+                        <?php echo htmlspecialchars($value['category']); ?>
                       </a>
                     </li>
                   <?php } ?>
@@ -93,8 +93,8 @@
                 <?php foreach ($categoryResult as $value) { ?>
                   <?php if($value['type'] == 1){?>
                   <li class="<?php if($cid == $value['id']){echo "active";} ?>">
-                    <a href="/home?cid=<?php echo $value['id'];?>">
-                      <?php echo $value['category']; ?>
+                    <a href="/?cid=<?php echo $value['id'];?>">
+                      <?php echo htmlspecialchars($value['category']); ?>
                     </a>
                   </li>
                   <?php } ?>

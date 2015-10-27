@@ -54,7 +54,7 @@
               <?php foreach ($result as $value) {?>
       				<tr>
                 <td><?php echo ++$index ?></td>
-                <td><?php echo $value['category'] ?></td>
+                <td><?php echo htmlspecialchars($value['category']); ?></td>
                 <td><?php echo $value['type'] ?></td>
                 <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
                 <td><a href="/admin/delete?cid=<?php echo $value['id']?>" class="btn btn-primary btn-xs">删除</a></td>

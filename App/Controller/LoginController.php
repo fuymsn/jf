@@ -1,6 +1,7 @@
 <?php
 
-class LoginController extends BaseController{
+class LoginController
+{
 	
 	function index()
 	{
@@ -18,9 +19,9 @@ class LoginController extends BaseController{
 	//执行登录操作
 	function handle()
 	{
+		session_start();
 		//require出现错误则断掉
 		require __CORE__."Model.php";
-		session_start();
 
 		//获取前台传入的email and pwd
 		$email = $_POST["email"];
@@ -39,7 +40,7 @@ class LoginController extends BaseController{
 		//$sqlConnection = mysqlConnect();
 
 		//$sqlResult = $sql->mysqlSelectQuery("uid,email", "user", "email='".$email."' and pwd='".$pwd."'", "1");
-		$sqlResult = $sql->select("uid,email", "user")
+		$sqlResult = $sql->select("uid, groupid, email", "user")
 			->where("email", $email)
 			->where("pwd", $pwd)
 			->limit(1)
@@ -53,17 +54,20 @@ class LoginController extends BaseController{
 		//mysql_fetch_array() 每次执行指针会指向下一条数据
 		//mysql_fetch_array($resRead)
 		//$param = array('table'=>'user','where'=>"email");
-		//var_dump($sqlResult); exit();
-
+		
 		if ($sqlResult) {
-
+			
 			//获取session状态
 			$_SESSION["email"] = $email;
-			$_SESSION["uid"] = $sqlResult["uid"];
+			$_SESSION["uid"] = $sqlResult[0]["uid"];
+			$_SESSION["gid"] = $sqlResult[0]["groupid"];
+			
+			// var_dump($sqlResult); exit;
 			
 			echo "登录成功";
 			
 			header("Location: /");
+			
 		}else{
 			exit("登录失败");
 		}

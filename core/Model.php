@@ -21,7 +21,7 @@ class MySql{
 		mysql_query("SET NAMES 'utf8'");
 
 		if (!$con) {
-			die("链接不成功");
+			exit("链接不成功");
 		}
 		
 		// 2 选择要操作的数据
@@ -66,31 +66,40 @@ class MySql{
 	
 	function query(){
 		// 3 执行要做得sql 
-		
-		$exe = mysql_query($this->_sql);
-
-		if (strpos($this->_sql, "select") === 0) {
-			//如果是select
-
-			//mysql_fetch_assoc 仅仅输出一条数据，所以需要循环出来
-			// 4 获取返回的结果
-			// 定义$result
-			$result = array();
+		// for 循环断线重连
+		for($i= 0 ; $i < 2 ; $i ++ ){
+			$exe = mysql_query($this->_sql);
 			
-			while($data = mysql_fetch_assoc($exe))
-			{
-				$result[] = $data;
+			if($exe === false){
+				if(mysql_errno() == '2006'){
+					//ping 轻量
+					mysql_ping(); 
+					continue;
+				}
+				return $exe;
 			}
 			
-			return $result;
-
-		}else{
-
-			//如果是其他
-			return $exe;
-
+			if (strpos($this->_sql, "select") === 0) {
+				//如果是select
+	
+				//mysql_fetch_assoc 仅仅输出一条数据，所以需要循环出来
+				// 4 获取返回的结果
+				// 定义$result
+				$result = array();
+				
+				while($data = mysql_fetch_assoc($exe))
+				{
+					$result[] = $data;
+				}
+				
+				return $result;
+	
+			}else{
+				//如果是其他
+				return $exe;
+	
+			}
 		}
-		
 
 	}
 	
