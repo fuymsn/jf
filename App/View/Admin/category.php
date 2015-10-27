@@ -18,18 +18,20 @@
     </style>
 </head>
 <body>
+  
+    <nav class="navbar navbar-static-top navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">金分</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
+        <li><a href="/login/out">退出</a></li>
+      </ul>
+    </div>
+  </nav>
   <div class="container">
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">金分</a>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
-            <li><a href="/login/out">退出</a></li>
-          </ul>
-        </div>
-      </nav>
+
     <div class="row">
         <div class="col-md-3">
           <ul class="list-group">
@@ -47,7 +49,7 @@
                 <td><?php echo ++$index ?></td>
                 <td><?php echo $value['category']?></td>
                 <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
-                <td><button type="submit" class="btn btn-primary btn-xs">删除</button></td>
+                <td><a href="/admin/delete?cid=<?php echo $value['id']?>" class="btn btn-primary btn-xs">删除</a></td>
               </tr>
               <?php }?>
       			</table>

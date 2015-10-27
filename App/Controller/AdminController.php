@@ -53,6 +53,18 @@ class AdminController
 	
 	function delete()
 	{
+		require __CORE__."Model.php";
+		
+		$cid = $_GET["cid"];
+		$sql = new MySql();
+		
+		$deleteResult = $sql->delete("category")->where("id", $cid)->query();
+		
+		if(!$deleteResult){
+			exit("删除失败");
+		}else{
+			header("Location: /admin");
+		}
 		
 	}
 

@@ -123,7 +123,9 @@ class MySql{
 	 */
 	function delete($table)
 	{
+		$this->_sql = "delete from ".$table;
 		
+		return $this;
 	}
 	
 	function __destruct(){

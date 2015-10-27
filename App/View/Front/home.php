@@ -21,20 +21,19 @@
     </style>
 </head>
 <body>
-  <div class="container">
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">金分</a>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
-            <li><a href="/login/out">退出</a></li>
-          </ul>
-        </div>
-      </nav>
-    <div class="row">
-
+  <nav class="navbar navbar-static-top navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">金分</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><?php echo $_SESSION["email"] ?></a></li>
+        <li><a href="/login/out">退出</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="">
+    
         <div class="col-md-3">
           <div class="list-group">
             <?php foreach ($categoryResult as $value) { ?>
@@ -117,13 +116,12 @@
                 </div> -->
     
                 <div class="form-group main-message">
-                    <iframe src="" height="600" width="100%" border="0" id="chart" name="chart"></iframe>
+                    <iframe src="" height="500" width="100%" border="0" id="chart" name="chart"></iframe>
                 </div>
             </div>
           </div>
         </div>
-
-    </div>
+        
   </div>
   <div style="width:0px; height:0px; overflow:hidden;" id="con">
     <?php echo $value['iframesrc'] ?>
