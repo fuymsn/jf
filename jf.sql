@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 27, 2015 at 06:00 PM
+-- Generation Time: Oct 28, 2015 at 03:56 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `groupid` int(11) NOT NULL COMMENT '群组id, 0为普通用户，1为管理员',
   `email` varchar(32) NOT NULL,
   `pwd` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
@@ -111,7 +111,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
