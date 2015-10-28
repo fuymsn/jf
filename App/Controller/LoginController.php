@@ -7,9 +7,9 @@ class LoginController
 	{
 		session_start();
 		
-		if($_SESSION){
-			header("Location: /");
-		}
+		//if($_SESSION){
+		//	header("Location: /");
+		//}
 
 		//require出现错误继续执行
 		include __APP__.'View/Front/login.php';
