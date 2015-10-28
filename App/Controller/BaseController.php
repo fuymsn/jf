@@ -19,7 +19,7 @@ class BaseController{
 			exit("访问受限，请联系管理员");
 		}
 		
-		$path = $_SERVER['PATH_INFO'];
+		$path = $_SERVER['REQUEST_URI'];
 		
 		foreach ($accessLimitPath as $value) {
 			//如果进入的人为管理员
