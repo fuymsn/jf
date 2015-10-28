@@ -8,10 +8,8 @@ class RegisterController extends BaseController
 	}
 
 	function handle(){
-
+		
 		require __CORE__."Model.php";
-		session_start();
-
 		$mail = $_POST["email"];
 		$pw1 = $_REQUEST["pw1"];
 		
@@ -34,12 +32,14 @@ class RegisterController extends BaseController
 		$sql = new MySql();
 		$checkEmailResult = $sql->select("email", "user")->where("email", $mail)->query();
 		//$param = array('table'=>'user','where'=>"email");
-
+		
+		
+		
 		if ($checkEmailResult) {
 			exit("邮箱重复");
 		}else{
 			
-			$insertInfoResult = $sql->insert('user', array('email'=>$mail, 'pwd'=>$pw1));
+			$insertInfoResult = $sql->insert('user', array('email'=>$mail, 'pwd'=>$pw1))->query();
 			//$sqlinsert = "insert into user (email, pwd) values('".$mail."','".$pw1."')";
 			
 			if (!$insertInfoResult) {
@@ -49,6 +49,7 @@ class RegisterController extends BaseController
 				//重新录入session
 				$_SESSION['email'] = $mail;
 				$_SESSION['uid'] = mysql_insert_id();
+				$_SESSION['gid'] = 0;
 
 				header('Location: /');
 				//echo "注册成功";
