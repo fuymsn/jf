@@ -13,6 +13,11 @@ class HomeController{
 		//require __CORE__."State.php";
 		//echo "hi"; die;
 		session_start();
+		
+		if(!$_SESSION){
+			header("Location: /login");
+		}
+		
     	require __CORE__."Model.php";
 		
     	$sql = new MySql();
