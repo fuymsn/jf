@@ -8,7 +8,7 @@ include __APP__."Controller/BaseController.php";
 
 $app = new Application();
 
-//include "Config/route.php";
+include "Config/route.php";
 
 return $app;
 
