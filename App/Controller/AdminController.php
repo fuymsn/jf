@@ -5,7 +5,7 @@ class AdminController extends BaseController
 
 	function index()
 	{
-		require __CORE__."Model.php";
+		require_once __CORE__."Model.php";
 	
 		$sql = new MySql();
 	
@@ -17,7 +17,6 @@ class AdminController extends BaseController
 	function add()
 	{
 		require __CORE__."Model.php";
-		session_start();
 		
 		$type = $_POST["type"];
 		$category = $_POST["category"];
@@ -41,7 +40,10 @@ class AdminController extends BaseController
 		if (!$insertResult) {
 			exit("添加失败");
 		}else{
-			header("Location: /admin");
+			header('Location: /admin?type='.$type);
+			//$this->index();
+			//$this->route(index);
+
 		}
 	}
 	
@@ -49,6 +51,7 @@ class AdminController extends BaseController
 	{
 		require __CORE__."Model.php";
 		
+		$type = $_GET["type"];
 		$cid = $_GET["cid"];
 		$sql = new MySql();
 		
@@ -57,7 +60,7 @@ class AdminController extends BaseController
 		if(!$deleteResult){
 			exit("删除失败");
 		}else{
-			header("Location: /admin");
+			header('Location: /admin?type='.$type);
 		}
 		
 	}

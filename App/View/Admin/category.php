@@ -35,7 +35,8 @@
     <div class="row">
         <div class="col-md-3">
           <ul class="list-group">
-            <li class="list-group-item"><a href="/admin">添加类别</a></li>
+            <li class="list-group-item"><a href="/admin?type=1">主播数据</a></li>
+            <li class="list-group-item"><a href="/admin?type=0">用户数据</a></li>
           </ul>
         </div>
         <div class="col-md-9">
@@ -51,30 +52,26 @@
                 <th>操作</th>
               </tr>
               <?php $index = 0 ?>
+              <?php $_GET['type'] = isset($_GET['type']) ? $_GET['type'] : 1 ?>
               <?php foreach ($result as $value) {?>
-      				<tr>
-                <td><?php echo ++$index ?></td>
-                <td><?php echo htmlspecialchars($value['category']); ?></td>
-                <td><?php echo $value['type'] ?></td>
-                <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
-                <td><a href="/admin/delete?cid=<?php echo $value['id']?>" class="btn btn-primary btn-xs">删除</a></td>
-              </tr>
+                <?php if( $value['type'] == $_GET['type']){ ?>
+                <tr>
+                  <td><?php echo ++$index ?></td>
+                  <td><?php echo htmlspecialchars($value['category']); ?></td>
+                  <td><?php echo $value['type'] ?></td>
+                  <td class="table-ifrsrc" title="<?php echo htmlspecialchars($value['iframesrc']); ?>"><div style="width: 450px"><?php echo htmlspecialchars($value['iframesrc']); ?></div></td>
+                  <td><a href="/admin/delete?cid=<?php echo $value['id']?>&type=<?php echo $_GET["type"]?>" class="btn btn-primary btn-xs">删除</a></td>
+                </tr>
+                <?php } ?>
               <?php }?>
       			</table>
 
       			<form action="/admin/add" method="POST">
-              <div class="row">
-                <div class="form-group col-lg-6">
-                  <label for="category">图表名称</label>
-                  <input type="text" class="form-control" name="category" id="category" placeholder="category">
-                </div>
-                <div class="form-group col-lg-6">
-                  <label for="type">图表名称</label>
-                  <select name="type" class="form-control" id="type" >
-                    <option value="0">用户</option>
-                    <option value="1">主播</option>
-                  </select>
-                </div>
+
+              <div class="form-group">
+                <label for="category">图表名称</label>
+                <input type="text" class="form-control" name="category" id="category" placeholder="category">
+                <input type="hidden" name="type" value="<?php echo $_GET['type'] ?>" />
               </div>
 
       				<div class="form-group">
