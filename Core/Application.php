@@ -8,7 +8,12 @@ class Application{
 	/**
 	 * 载入的路由数组
 	 */
-	protected $routes = [];
+	protected $routeConfig = [];
+	
+	/**
+	 * 从配置文件载入的数据库配置
+	 */
+	protected $databaseConfig = [];
 	
 	/**
 	 * 已经载入的配置
@@ -31,6 +36,7 @@ class Application{
 	public function __construct()
 	{
 		$this->configure('route');
+		$this->configure('database');
 	}
 	
 	//run
@@ -38,7 +44,7 @@ class Application{
 	{
 		//路由解析
 		$this->make('route');
-		$this->route->run($this->routes);
+		$this->route->run($this->routeConfig);
 	}
 	
 	//获取配置路由
@@ -57,7 +63,8 @@ class Application{
 		$this->loadedConfigurations[$name] = true;
 		$path = $this->getConfigurationPath($name);
 		if($path){
-			$this->routes = require $this->configPath . '/' . $name . '.php';
+			$configName = $name.'Config';
+			$this->$configName = require $this->configPath . '/' . $name . '.php';
 		}
 	}
 	
