@@ -67,9 +67,13 @@ class MySql{
 	function query(){
 		// 3 执行要做得sql 
 		// for 循环断线重连
+		
+		//var_dump($this->_sql); exit;
+		
 		for($i= 0 ; $i < 2 ; $i ++ ){
 			$exe = $this->_connection->query($this->_sql);
 			
+			//var_dump($exe); exit();
 			if($exe === false){
 				if(mysql_errno() == '2006'){
 					//ping 轻量
@@ -124,6 +128,7 @@ class MySql{
 		$this->_sql = "insert into ".$table." (".$strKeys.") values(".$strValues.")";
 		//$result = mysql_query($sql);
 		
+		//var_dump($this->_sql); exit;
 		return $this;
 	}
 

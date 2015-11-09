@@ -8,7 +8,7 @@ class RegisterController extends BaseController
 	}
 
 	function handle(){
-		
+
 		require __CORE__."Model.php";
 		$mail = $_POST["email"];
 		$pw1 = $_REQUEST["pw1"];
@@ -40,8 +40,7 @@ class RegisterController extends BaseController
 		}else{
 			
 			$insertInfoResult = $sql->insert('user', array('email'=>$mail, 'pwd'=>$pw1))->query();
-			//$sqlinsert = "insert into user (email, pwd) values('".$mail."','".$pw1."')";
-			
+
 			if (!$insertInfoResult) {
 				exit("注册失败");
 			}else{

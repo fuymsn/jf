@@ -7,9 +7,9 @@ class LoginController
 	{
 		session_start();
 		
-		//if($_SESSION){
-		//	header("Location: /");
-		//}
+		if($_SESSION){
+			header("Location: /");
+		}
 
 		//require出现错误继续执行
 		include __APP__.'View/Front/login.php';
@@ -19,6 +19,7 @@ class LoginController
 	//执行登录操作
 	function handle()
 	{
+		
 		session_start();
 		//require出现错误则断掉
 		require __CORE__."Model.php";

@@ -1,67 +1,80 @@
 <?php
 
+require __CORE__."Route.php";
+require __CORE__."Controller.php";
+
 class Application{
 	
+	/**
+	 * 载入的路由数组
+	 */
 	protected $routes = [];
+	
 	/**
 	 * 已经载入的配置
 	 */
 	protected $loadedConfigurations = [];
 	
+	//配置path
+	protected $configPath = "../App/Config";
+	
+	//框架path
+	protected $basePath = "./";
+	
+	//bind 注册树
+	protected $bind = array();
+	
+	//bind 已经注册的对象
+	protected $shared = array();
+	
+	//构造
 	public function __construct()
 	{
 		$this->configure('route');
 	}
 	
-	public function run(){
-		//echo "hi"; die;
-		require __CORE__."Route.php";
-		require __CORE__."Controller.php";
-		
+	//run
+	public function run()
+	{
+		//路由解析
+		$this->make('route');
+		$this->route->run($this->routes);
 	}
 	
-	public function get($url, $action){
-		$this->addRoute('GET', $url, $action);
-	}
-	
-	public function post($url, $action){
-		$this->addRoute('POST', $url, $action);
-	}
-	
-	//添加路由到路由配置数组
-	public function addRoute($method, $url, $action){
-		$this->routes[$method . $url] = ['method' => $method, 'url' => $url, 'action' => $action];
-	}
+	//获取配置路由
+    protected function getConfigurationPath($name)
+    {
+        $appConfigPath = $this->configPath . '/' . $name . '.php';
+        if (file_exists($appConfigPath)) {
+            return $appConfigPath;
+        }else{
+			exit('file not exit');
+		}
+    }
 	
 	//配置
 	public function configure($name){
 		$this->loadedConfigurations[$name] = true;
 		$path = $this->getConfigurationPath($name);
 		if($path){
-			
+			$this->routes = require $this->configPath . '/' . $name . '.php';
 		}
 	}
 	
-    /**
-     * 根据给出的 配置选项的值获取对应的加载文件的路径
-     *
-     * @param  string $name
-     * @return string
-     */
-    protected function getConfigurationPath($name)
-    {
-        $appConfigPath = ($this->configPath ?: $this->basePath('config')) . '/' . $name . '.php';
-        if (file_exists($appConfigPath)) {
-            return $appConfigPath;
-        } elseif (file_exists($path = __DIR__ . '/../App/Config/' . $name . '.php')) {
-            return $path;
-        }
-    }
+	//实例化类，并放在注册树中
+	protected function make($abstract)
+	{	
+		$this->bind[$abstract] = new $abstract();
+		//如果实例化成功
+		if(isset($this->bind[$abstract])){
+			$this->shared[$abstract] = $this->bind[$abstract];
+		}
+	}
 	
-	//分发
-	function dispatcher()
+	//魔术方法，如果$this -> x中 x不存在，x会被当做key传入__get
+	public function __get($key)
 	{
-		
+		return $this->shared[$key];
 	}
 	
 	public function __destruct()
