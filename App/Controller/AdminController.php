@@ -41,9 +41,6 @@ class AdminController extends BaseController
 			exit("添加失败");
 		}else{
 			header('Location: /admin?type='.$type);
-			//$this->index();
-			//$this->route(index);
-
 		}
 	}
 	

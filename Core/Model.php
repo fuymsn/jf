@@ -7,15 +7,21 @@ class MySql{
 	//查询得到的sql，用于链式存储
 	private $_sql;
 	
-	function __construct(){
+	private $_config = [];
+	
+	public function __construct(){
+		//获取容器实例
+		$this->_config = Application::getContainer()->databaseConfig;
+		
 		$this->connect();
 	}
 	
 	//链接数据库
-	function connect()
+	public function connect()
 	{
 		//1 首先链接数据
-		$con = new mysqli("127.0.0.1:3366", "root", "", "jf");
+		$conf = $this->_config;
+		$con = new mysqli($conf['hostname'].':'.$conf['port'], $conf['user'], $conf['password'], $conf['database']);
 		
 		//链接的时候用UTF8 字符集通信
 		$con->query("SET NAMES 'utf8'");
@@ -35,7 +41,7 @@ class MySql{
 	* $target 查询对象，用逗号符分割
 	* $table 查询的表
 	*/
-	function select($target, $table)
+	public function select($target, $table)
 	{
 		$this->_sql = "select ". $target ." from ". $table;
 		return $this;
@@ -48,7 +54,7 @@ class MySql{
 	* @param string $operator 操作符
 	* @return object
 	*/
-	function where($key, $value, $operator="="){
+	public function where($key, $value, $operator="="){
 		if(!strpos($this->_sql, "where")){
 			$this->_sql = $this->_sql." where ".$key.$operator."'".$value."'";
 		}else{
@@ -58,13 +64,13 @@ class MySql{
 		return $this;
 	}
 	
-	function limit($num){
+	public function limit($num){
 		$this->_sql = $this->_sql." limit ".$num;
 		
 		return $this;
 	}
 	
-	function query(){
+	public function query(){
 		// 3 执行要做得sql 
 		// for 循环断线重连
 		
@@ -110,7 +116,7 @@ class MySql{
 	/*
 	* 插入
 	*/
-	function insert($table, $arr)
+	public function insert($table, $arr)
 	{	
 		$strKeys = "";
 		$strValues = "";
@@ -135,14 +141,14 @@ class MySql{
 	/**
 	 * 删除
 	 */
-	function delete($table)
+	public function delete($table)
 	{
 		$this->_sql = "delete from ".$table;
 		
 		return $this;
 	}
 	
-	function __destruct(){
+	public function __destruct(){
 		// 5 关闭数据库
 		mysqli_close($this->_connection);
 	}
