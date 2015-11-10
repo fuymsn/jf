@@ -30,8 +30,7 @@ class AdminController extends BaseController
 			exit("iframe src不能为空");
 		}
 		
-		$iframesrc = preg_replace("/((?<=from:\').*?(?=',mode))/", '______', $iframesrc);
-		$iframesrc = preg_replace("/((?<=to:\').*?(?='\)))/", '______', $iframesrc);
+		$iframesrc = $this->parseIframeSrc($iframesrc);
 		
 		$sql = new MySql();
 		
@@ -60,6 +59,62 @@ class AdminController extends BaseController
 			header('Location: /admin?type='.$type);
 		}
 		
+	}
+	
+	function update()
+	{
+		
+		require __CORE__."Model.php";
+		
+		$category = $_GET['category'];
+		$iframesrc = $_GET['iframesrc'];
+		$id = $_GET['id'];
+		
+		if (empty($category)) {
+			echo json_encode(array(
+				"code" => 102,
+				"msg" => "图表名称不能为空"
+			));
+			return;
+		}
+		
+		if (empty($iframesrc)) {
+			echo json_encode(array(
+				"code" => 103,
+				"msg" => "图表链接不能为空"
+			));
+			return;
+		}
+		
+		$iframesrc = $this->parseIframeSrc($iframesrc);
+		
+		
+		$sql = new MySql();
+		
+		$updateResult = $sql->update("category")
+							->set(["category"=>$category, "iframesrc"=>$iframesrc])
+							->where("id", $id)
+							->query();
+		
+		if($updateResult){
+			echo json_encode(array(
+				"code" => 0,
+				"msg" => "更新成功"
+			));
+		}else{
+			echo json_encode(array(
+				"code" => 101,
+				"msg" => "更新失败"
+			));
+		}
+
+	}
+	
+	function parseIframeSrc($src)
+	{
+		$src = preg_replace("/((?<=from:\').*?(?=',mode))/", '______', $src);
+		$src = preg_replace("/((?<=to:\').*?(?='\)))/", '______', $src);
+		return $src;
 	}
 
 }

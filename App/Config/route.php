@@ -11,6 +11,7 @@ return array(
 	//handle
 	'/admin/add'=>array('handle'=>'post:AdminController@add'),
 	'/admin/delete'=>array('handle'=>'get:AdminController@delete'),
+	'/admin/update'=>array('handle'=>'get:AdminController@update'),
 	
 	'/login/handle'=>array('handle'=>'post:LoginController@handle'),
 	'/login/out'=>array('handle'=>'get:LoginController@out'),

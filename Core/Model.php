@@ -148,6 +148,31 @@ class MySql{
 		return $this;
 	}
 	
+	/**
+	 * 更新数据库
+	 */
+	 
+	public function update($table)
+	{
+		$this->_sql = 'update '.$table;
+		
+		return $this;
+	}
+	
+	public function set($arr)
+	{
+		$setStr = ' SET ';
+		
+		foreach($arr as $key => $value){
+			$setStr = $setStr.$key." = '".addslashes($value)."',";
+		}
+		
+		$setStr = rtrim($setStr, ',');
+		$this->_sql = $this->_sql.$setStr;
+		
+		return $this;
+	}
+	
 	public function __destruct(){
 		// 5 关闭数据库
 		mysqli_close($this->_connection);
