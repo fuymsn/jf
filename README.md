@@ -5,3 +5,5 @@
 * 单一入口
 * application
 * controller
+* container
+* config
