@@ -9,9 +9,6 @@ class HomeController{
 
 	function index()
 	{
-		
-		//require __CORE__."State.php";
-		//echo "hi"; die;
 		session_start();
 		
 		if(!$_SESSION){
